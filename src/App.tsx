@@ -1,18 +1,35 @@
-/// <reference types="chrome" />
-/// <reference types="vite-plugin-svgr/client" />
-
-import Logo from "./Logo";
-import "./App.css";
+import logo from './logo.svg';
+import './App.css';
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
+import Summary from './Summary';
+import Discussion from './Discussion';
+import { useState } from 'react';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 function App() {
+  const [status, setStatus] = useState('summary');
   return (
-    <div className="App">
-      <header className="App-header">
-        <Logo className="App-logo" id="App-logo" title="React logo" />
-        <p>Hello, World!</p>
-        <p>I'm a Chrome Extension Popup!</p>
-      </header>
-    </div>
+  <Tabs
+      defaultActiveKey="summary"
+      id="uncontrolled-tab-example"
+      className="mb-3"
+    >
+      <Tab eventKey="summary" title="Summary">
+        <Summary status={'summary'}/>
+      </Tab>
+      <Tab eventKey="discussion" title="Discussion">
+      <Discussion status={'discussion'}/>
+      </Tab>
+    </Tabs>
   );
 }
 
